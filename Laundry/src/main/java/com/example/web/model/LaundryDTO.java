@@ -10,6 +10,7 @@ private String name;
 private String phone;
 private String work;
 private String pay;
+private String msg;
 private String output;
 private Date date;
 private String amount;
@@ -17,7 +18,7 @@ public LaundryDTO() {
 	// TODO Auto-generated constructor stub
 }
 
-public LaundryDTO(int id, String dong, int hosu, String name, String phone, String work, String pay, String output, Date date, String amount) {
+public LaundryDTO(int id, String dong, int hosu, String name, String phone, String work, String pay, String output, Date date,String msg, String amount) {
     this.id = id;
     this.dong = dong;
     this.hosu = hosu;
@@ -26,20 +27,12 @@ public LaundryDTO(int id, String dong, int hosu, String name, String phone, Stri
     this.work = work;
     this.pay = pay;
     this.output = output;
+    this.msg=msg;
     this.date = date;
     this.amount = amount;
 }
 
-public LaundryDTO(String dong, int hosu, String name, String phone, String work, String pay, String output, String amount) {
-    this.dong = dong;
-    this.hosu = hosu;
-    this.name = name;
-    this.phone = phone;
-    this.work = work;
-    this.pay = pay;
-    this.output = output;
-    this.amount = amount;
-}
+
 
 
 public int getId() {
@@ -48,6 +41,15 @@ public int getId() {
 public void setId(int id) {
 	this.id = id;
 }
+
+public String getMsg() {
+	return msg;
+}
+
+public void setMsg(String msg) {
+	this.msg = msg;
+}
+
 public String getDong() {
 	return dong;
 }

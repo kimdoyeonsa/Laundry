@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Calendar;
+
 import com.example.web.model.LaundryDTO;
 import com.example.web.util.CommonUtil;
 
@@ -29,7 +31,9 @@ public class LaundryDAO {
 			e.printStackTrace();
 		}
 	}
-public void CreateLaundry(String table) {
+	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+	Calendar cal=Calendar.getInstance();
+	public void CreateLaundry(String table) {
 	Connection conn = null;
 	ResultSet rset = null;
 	PreparedStatement pstmt = null;
@@ -56,6 +60,7 @@ public ArrayList<LaundryDTO> list(String table,String keyField,String search){
 	ResultSet rset = null;
 	PreparedStatement pstmt = null;
 	StringBuilder sql = new StringBuilder();
+	java.util.Date currdate=new java.util.Date();
 	ArrayList<LaundryDTO> item = new ArrayList<LaundryDTO>();
 	try {
 		conn = dbconn.openmysql();
@@ -88,6 +93,7 @@ public ArrayList<LaundryDTO> list(String table,String keyField,String search){
 				ldto.setOutput(rset.getString("output"));
 				ldto.setDate(rset.getDate("date"));
 				*/
+				
 				int id=rset.getInt("id");
 				String dong=rset.getString("dong");
 				int hosu=rset.getInt("hosu");
@@ -98,9 +104,17 @@ public ArrayList<LaundryDTO> list(String table,String keyField,String search){
 			    String output=rset.getString("output");
 			    Date date=rset.getDate("date");
 			    String amount=rset.getString("amount");
-			   if(rset.getString(keyField).contains(search)) {
+			    String msg="";
+			    cal.setTime(date);
+			    cal.add(cal.DATE, +7);
+			    if(output.equals("출고")) {
+			    	if(dbconn.check(currdate, cal.getTime())==1) {
+			    	msg="<font color=\"#ff0000\">"+"출고된지 일주일이 넘었습니다. 빨리 찾아 가세요."+"</font>";
+			    	}
+			    }
+			    if(rset.getString(keyField).contains(search)) {
 				//if(dong.contains(search)||hosu.contains(search)||name.contains(search)||phone.contains(search)){
-			   LaundryDTO ldto=new LaundryDTO(id, dong, hosu, name, phone, work, pay, output, date, amount);
+			   LaundryDTO ldto=new LaundryDTO(id, dong, hosu, name, phone, work, pay, output, date,msg, amount);
 			   item.add(ldto);
 			    }
 			}while(rset.next());
@@ -118,6 +132,7 @@ public ArrayList<LaundryDTO> read(String table,int idx){
 	ResultSet rset = null;
 	PreparedStatement pstmt = null;
 	StringBuilder sql = new StringBuilder();
+	java.util.Date currdate=new java.util.Date();
 	ArrayList<LaundryDTO> item = new ArrayList<LaundryDTO>();
 	try {
 		conn = dbconn.openmysql();
@@ -160,8 +175,8 @@ public ArrayList<LaundryDTO> read(String table,int idx){
 			    String output=rset.getString("output");
 			    Date date=rset.getDate("date");
 			    String amount=rset.getString("amount");
-				if(id==idx){	
-			    LaundryDTO ldto=new LaundryDTO(id, dong, hosu, name, phone, work, pay, output, date, amount);
+			   if(id==idx){	
+			    LaundryDTO ldto=new LaundryDTO(id, dong, hosu, name, phone, work, pay, output, date,"", amount);
 				item.add(ldto);
 				}
 			}while(rset.next());
@@ -173,38 +188,6 @@ public ArrayList<LaundryDTO> read(String table,int idx){
 	}
 	return item;
 	
-}
-public int getTotalCount(String table) {
-
-	Connection conn = null;
-	ResultSet rset = null;
-	PreparedStatement pstmt = null;
-	StringBuilder sql = new StringBuilder();
-	int totalCount = 0;
-	try {
-		conn = dbconn.openmysql();
-		// sql.append("use notice");
-		// pstmt = conn.prepareStatement(sql.toString());
-		// rset = pstmt.executeQuery();
-		sql = new StringBuilder();
-			sql.append("select count(id) from Laundry."+table+" order by date desc");
-
-			pstmt = conn.prepareStatement(sql.toString());
-		
-		rset = pstmt.executeQuery();
-		if (rset.next()) {
-			totalCount = rset.getInt(1);
-		}
-
-	} catch (Exception e) {
-		e.printStackTrace();
-	} finally {
-
-		CommonUtil.sqlclose(conn, pstmt, rset);
-
-	}
-
-	return totalCount;
 }
 
 public int insert(String table,LaundryDTO ldto) {

@@ -103,7 +103,7 @@ public class CommonUtil {
 	
 	
 	
-	public static String apikey="7a57c0c0fdf4c169a79092542f8d57a8";
+	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 	
 	private Properties connectionProperties = new Properties();
 	public static CommonUtil getInstance() {
@@ -146,5 +146,14 @@ public class CommonUtil {
 		}
 		return utfstr;
 	}
-	
+	public int check(Date a,Date b) throws Exception {
+		 java.util.Date cdate=sdf.parse(sdf.format(a));
+		 java.util.Date sdate=sdf.parse(sdf.format(b));
+		int i=0;
+		if(a.compareTo(b)>=0) {
+		i=1;
+		}
+		return i;
+		
+	}
 }

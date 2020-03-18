@@ -7,6 +7,7 @@
    String search = (String) request.getAttribute("search");
     ArrayList<LaundryDTO> items=(ArrayList<LaundryDTO>)request.getAttribute("items");
     %>
+   
     <script>
    
     function add(){
@@ -52,36 +53,38 @@ function edit(idx){
      </div>
 </div>
 
+
 <ul class="list-group">
 <%
 if(items.isEmpty()){
 	%>
-		
-	<div class="card">
+	<li class="list-group-item">	
+	<div class="card" style="width:60rem">
   <div class="card-body">
-<li class="list-group-item">데이터가 없습니다.</li>	
+<h3>데이터가 없습니다.</h3>	
 </div>
 </div>
+</li>
 <% 
 }
 else{		
 for(LaundryDTO ldto:items){
 	
 	%>
-		
-	<div class="card">
+		<li class="list-group-item">	
+		<div class="card" style="width:60rem">
   <div class="card-body">
-			
-		<h3><a href="javascript:edit('<%=ldto.getId() %>')"><%=ldto.getDong()+"동" %>   <%=ldto.getHosu()+"호" %>   <%=ldto.getName() %>   <%=ldto.getPhone() %>   <%=ldto.getAmount()+" 개" %>   <%=ldto.getWork() %>   <%=ldto.getDate() %>   <%=ldto.getOutput() %>   <%=ldto.getPay() %></a></h3>
+		
+		<div class="card-text"><h3><a href="javascript:edit('<%=ldto.getId() %>')"><%=ldto.getDong()+"동" %>&nbsp;&nbsp;&nbsp;<%=ldto.getHosu()+"호" %>&nbsp;&nbsp;&nbsp;<%=ldto.getName() %>&nbsp;&nbsp;&nbsp;<%=ldto.getPhone() %>&nbsp;&nbsp;&nbsp;<%=ldto.getAmount()+" 개" %>&nbsp;&nbsp;&nbsp;<%=ldto.getWork() %>&nbsp;&nbsp;&nbsp;<%=ldto.getDate() %>&nbsp;&nbsp;&nbsp;<%=ldto.getOutput() %>&nbsp;&nbsp;&nbsp;<%=ldto.getPay() %>&nbsp;&nbsp;&nbsp;<%=ldto.getMsg() %></a></h3></div>
 
 </div>
 </div>
+</li>
 <%
 }
 }
 %>
 </ul>
-
 </form>
 
 </div>
