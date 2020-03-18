@@ -106,32 +106,70 @@ public class WebController {
 		return mnv.addAllObjects(hmap);
 	}
 	@RequestMapping("insert/proc.php")
-	public void insertproc(LaundryDTO ldto,HttpServletRequest req,HttpServletResponse res) throws IOException {
+	public void insertproc(HttpServletRequest req,HttpServletResponse res) throws NumberFormatException,Exception {
+		LaundryDTO ldto=new LaundryDTO();
 		PrintWriter out=res.getWriter();
 		ldto.setId(vdao.select_int_nextval("Laundry", "Laundry", "id"));
-		ldto.setDong(req.getParameter("dong"));
-		ldto.setHosu(Integer.parseInt(req.getParameter("hosu")));
-		ldto.setName(req.getParameter("name"));
-		ldto.setAmount(req.getParameter("amount"));
-		ldto.setPay(req.getParameter("pay"));
-		ldto.setWork(req.getParameter("work"));
-		ldto.setPhone(req.getParameter("phone"));
-		ldto.setOutput(req.getParameter("output"));
+		String dong="";
+		dong=req.getParameter("dong");
+		ldto.setDong(dong);
+		int hosu=0;
+		if (req.getParameter("hosu") == null) {
+		hosu = Integer.parseInt(req.getParameter("hosu"));
+		}
+		ldto.setHosu(hosu);
+		String name="";
+		name=req.getParameter("name");
+		ldto.setName(name);
+		String amount="";
+		amount=req.getParameter("amount");
+		ldto.setAmount(amount);
+		String pay="";
+		pay=req.getParameter("pay");
+		ldto.setPay(pay);
+		String work="";
+		work=req.getParameter("work");
+		ldto.setWork(work);
+		String phone="";
+		phone=req.getParameter("phone");
+		ldto.setPhone(phone);
+		String output="";
+		output=req.getParameter("output");
+		ldto.setOutput(output);
 		int flag=ldao.insert("Laundry", ldto);
 		out.println("{\"result\":\""+flag+"\"}");
 		
 	}
 	@RequestMapping("update/proc.php")
-	public void updateproc(LaundryDTO ldto, HttpServletRequest req,HttpServletResponse res) throws IOException {
+	public void updateproc(HttpServletRequest req,HttpServletResponse res) throws NumberFormatException,Exception {
+		LaundryDTO ldto=new LaundryDTO();
 		PrintWriter out=res.getWriter();
-		ldto.setDong(req.getParameter("dong"));
-		ldto.setHosu(Integer.parseInt(req.getParameter("hosu")));
-		ldto.setName(req.getParameter("name"));
-		ldto.setAmount(req.getParameter("amount"));
-		ldto.setPay(req.getParameter("pay"));
-		ldto.setWork(req.getParameter("work"));
-		ldto.setPhone(req.getParameter("phone"));
-		ldto.setOutput(req.getParameter("output"));
+		String dong="";
+		dong=req.getParameter("dong");
+		ldto.setDong(dong);
+		int hosu=0;
+		if (req.getParameter("hosu") != null) {
+		hosu = Integer.parseInt(req.getParameter("hosu"));
+		}
+		ldto.setHosu(hosu);
+		String name="";
+		name=req.getParameter("name");
+		ldto.setName(name);
+		String amount="";
+		amount=req.getParameter("amount");
+		ldto.setAmount(amount);
+		String pay="";
+		pay=req.getParameter("pay");
+		ldto.setPay(pay);
+		String work="";
+		work=req.getParameter("work");
+		ldto.setWork(work);
+		String phone="";
+		phone=req.getParameter("phone");
+		ldto.setPhone(phone);
+		String output="";
+		output=req.getParameter("output");
+		ldto.setOutput(output);
 		ldto.setId(Integer.parseInt(req.getParameter("id")));
 		int flag=ldao.update("Laundry", ldto);
 		out.println("{\"result\":\""+flag+"\"}");
@@ -142,5 +180,6 @@ public class WebController {
 		ldao.delete("Laundry", ldto);
 		res.sendRedirect(req.getContextPath()+"/Form/list.php");
 	}
+	
 	
 }

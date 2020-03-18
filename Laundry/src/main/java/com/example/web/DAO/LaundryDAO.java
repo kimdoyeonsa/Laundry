@@ -45,7 +45,7 @@ public class LaundryDAO {
 		pstmt=conn.prepareStatement(sql.toString());
 		pstmt.execute();
 		sql = new StringBuilder();
-		sql.append("create table if not exists Laundry."+table+"(id int(255) not null AUTO_INCREMENT,dong varchar(10),hosu int(10),name varchar(20),phone varchar(15),work varchar(100),amount varchar(10),pay enum('선불','후불'),output enum('입고','출고'),date date default curdate(),primary key(id));");
+		sql.append("create table if not exists Laundry."+table+"(id int(255) not null AUTO_INCREMENT,dong varchar(10),hosu int(10) not null default 0,name varchar(20),phone varchar(15),work varchar(100),amount varchar(10),pay enum('선불','후불'),output enum('입고','출고'),date date default curdate(),primary key(id));");
 		pstmt=conn.prepareStatement(sql.toString());
 		pstmt.execute();
 	}catch(Exception e) {
@@ -107,16 +107,23 @@ public ArrayList<LaundryDTO> list(String table,String keyField,String search){
 			    String msg="";
 			    cal.setTime(date);
 			    cal.add(cal.DATE, +7);
-			    if(output.equals("출고")) {
-			    	if(dbconn.check(currdate, cal.getTime())==1) {
-			    	msg="<font color=\"#ff0000\">"+"출고된지 일주일이 넘었습니다. 빨리 찾아 가세요."+"</font>";
+			    
+		
+			    		if(rset.getString(keyField).contains(search)) {
+			    	    	if(dbconn.check(currdate, cal.getTime())==1) {
+			    			//if(dong.contains(search)||hosu.contains(search)||name.contains(search)||phone.contains(search)){
+						   LaundryDTO ldto=new LaundryDTO(id, dong, hosu, name, phone, work, pay, output, date,msg, amount);
+						   item.add(ldto);
+						    }
+			    	    	else {
+				    			//if(dong.contains(search)||hosu.contains(search)||name.contains(search)||phone.contains(search)){
+							   LaundryDTO ldto=new LaundryDTO(id, dong, hosu, name, phone, work, pay, output, date,msg, amount);
+							   item.add(ldto);
+							    }
+			    	    	
 			    	}
-			    }
-			    if(rset.getString(keyField).contains(search)) {
-				//if(dong.contains(search)||hosu.contains(search)||name.contains(search)||phone.contains(search)){
-			   LaundryDTO ldto=new LaundryDTO(id, dong, hosu, name, phone, work, pay, output, date,msg, amount);
-			   item.add(ldto);
-			    }
+			   
+			    
 			}while(rset.next());
 		}
 	}catch(Exception e) {

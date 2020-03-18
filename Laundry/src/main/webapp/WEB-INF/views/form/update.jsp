@@ -8,7 +8,7 @@
    <script>
 function formSubmit(sel){
 	  var params = $(sel).serialize(); 
-		if($("#name").val()==""||$("#dong").val()==""||$("#hosu").val()==""||$("#phone").val()==""||$("#amount").val()==""||$("#work").val()==""||$("#pay").val()==""||$("#output").val()==""){
+		if($("#name").val()==""||$("#phone").val()==""||$("#amount").val()==""||$("#work").val()==""||$("#pay").val()==""||$("#output").val()==""){
 			 swal("비어있는 필드를 입력해주세요.");  
 		  }
 	  else{

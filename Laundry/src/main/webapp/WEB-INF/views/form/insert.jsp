@@ -4,7 +4,7 @@
 <script>
 function formSubmit(sel){
 	  var params = $(sel).serialize(); 
-	  if($("#name").val()==""||$("#dong").val()==""||$("#hosu").val()==""||$("#phone").val()==""||$("#amount").val()==""||$("#work").val()==""||$("#pay").val()==""||$("#output").val()==""){
+	  if($("#name").val()==""||$("#phone").val()==""||$("#amount").val()==""||$("#work").val()==""||$("#pay").val()==""||$("#output").val()==""){
 				 swal("비어있는 필드를 입력해주세요.");  
 		  }
 	  else{
@@ -54,7 +54,7 @@ return false;
 <div class="form-group">
 <div class="col-md-3 col-md-5"><label for="name">이름</label><input type="text" size="10" class="form-control" name="name" id="name" placeholder="이름"></div>
 <div class="col-md-3 col-md-5"><label for="dong">동</label><input type="text" size="10" class="form-control" name="dong" id="dong" placeholder="동"></div>
-<div class="col-md-3 col-md-5"><label for="hosu">호수</label><input type="text" size="10" class="form-control"  name="hosu" id="hosu" placeholder="호수" style="ime-mode:disabled"></div>
+<div class="col-md-3 col-md-5"><label for="hosu">호수</label><input type="text" size="10" class="form-control"  name="hosu" id="hosu" placeholder="호수"></div>
 </div>
 	</div>
 <div class="row">

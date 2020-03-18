@@ -150,7 +150,17 @@ public class CommonUtil {
 		 java.util.Date cdate=sdf.parse(sdf.format(a));
 		 java.util.Date sdate=sdf.parse(sdf.format(b));
 		int i=0;
-		if(a.compareTo(b)>=0) {
+		if(a.compareTo(b)>0) {
+		i=1;
+		}
+		return i;
+		
+	}
+	public int vcheck(Date a,Date b) throws Exception {
+		 java.util.Date cdate=sdf.parse(sdf.format(a));
+		 java.util.Date sdate=sdf.parse(sdf.format(b));
+		int i=0;
+		if(a.compareTo(b)<0) {
 		i=1;
 		}
 		return i;
