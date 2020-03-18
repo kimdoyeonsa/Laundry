@@ -108,7 +108,7 @@ public ArrayList<LaundryDTO> list(String table,String keyField,String search){
 			    cal.setTime(date);
 			    cal.add(cal.DATE, +7);
 			    if(dbconn.check(currdate, cal.getTime())==1) {
-			    msg="¡î";
+			    msg="<font color=\"#ff0000\">¡î</font>";
 			    }
 		
 			    		if(rset.getString(keyField).contains(search)) {
