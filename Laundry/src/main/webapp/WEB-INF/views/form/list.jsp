@@ -9,8 +9,7 @@
     %>
    
     <script>
-   
-    function add(){
+   function add(){
 	$("#container").load("<%=request.getContextPath()%>/Form/insert.php","");
 	}
 function search(){
@@ -33,7 +32,6 @@ $("#form").keydown(function (event)
 
 function edit(idx){
 	var data="idx="+idx;
-	$("#container").load("<%=request.getContextPath()%>/Form/update.php",data);
 }
 </script>
     <div id="container" class="container">
@@ -42,13 +40,13 @@ function edit(idx){
    <div class="row">
 <div class="form-group">
 <div class="col-md-3 col-md-5">
-<select class="form-control" id="keyField" name="keyField" >
+<select class="form-control" id="keyField" name="keyField" onchange="changekeyField()">
 <option value="dong" id="dong" <%if(keyField.equals("dong")){ %>selected<%} %>>동</option>
 <option value="name" id="name" <%if(keyField.equals("name")){ %>selected<%} %>>이름</option>
 <option value="hosu" id="hosu"<%if(keyField.equals("hosu")){ %>selected<%} %>>호수</option>
 <option value="phone" id="phone" <%if(keyField.equals("phone")){ %>selected<%} %>>연락처</option>
 </select>
-<input type="text" class="form-control" size="20" name="search" id="search" value="<%if(search!=""){out.println(search);} %>" placeholder="호수를 검색하세요."> 
+<input type="text" class="form-control" size="20" name="search" id="search" value="<%if(search!=""){out.println(search);} %>" placeholder="<%out.println(keyField); %>를 검색하세요."> 
     </div> <a href="javascript:search()" class="btn btn-default">검색</a>&nbsp;&nbsp;&nbsp;<a href="javascript:add()" class="btn btn-default">추가</a>
      </div>
 </div>

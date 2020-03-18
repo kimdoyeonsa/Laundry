@@ -107,7 +107,9 @@ public ArrayList<LaundryDTO> list(String table,String keyField,String search){
 			    String msg="";
 			    cal.setTime(date);
 			    cal.add(cal.DATE, +7);
-			    
+			    if(dbconn.check(currdate, cal.getTime())==1) {
+			    msg="¡î";
+			    }
 		
 			    		if(rset.getString(keyField).contains(search)) {
 			    	    	if(dbconn.check(currdate, cal.getTime())==1) {

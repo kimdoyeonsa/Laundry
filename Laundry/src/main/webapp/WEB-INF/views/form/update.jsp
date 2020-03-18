@@ -66,25 +66,38 @@ function del(idx){
 		});
 	return;
     	}
+$("#hosu").keypress(function(event){
+	if(event.which&&(event.which<=47||event.which>=58)&&event.which!=8){
+		event.preventDefault();
+	}	
+	});
+	$("#phone").keypress(function(event){
+		if(event.which&&(event.which<=47||event.which>=58)&&event.which!=8){
+			event.preventDefault();
+		}	
+		});
+
 </script>
 <div id="container" class="container">
 <h2 class="text-center">수정화면</h2>
 
-<form class="form-horizontal" method="post" name="form" id="form" action="<%=request.getContextPath()%>/update/proc.php" onsubmit="return formSubmit(this)">
+<form class="form-horizontal" method="post" name="form" id="form" autocomplete="off" action="<%=request.getContextPath()%>/update/proc.php" onsubmit="return formSubmit(this)">
 <%for(LaundryDTO ldto:items){ %>
 
 <div class="row">
 <div class="form-group">
 <div class="col-md-3 col-md-5"><label for="name">이름</label><input type="text" size="10" class="form-control" name="name" id="name" value="<%=ldto.getName() %>" placeholder="이름"></div>
 <div class="col-md-3 col-md-5"><label for="dong">동</label><input type="text" size="10" class="form-control" name="dong" id="dong" value="<%=ldto.getDong() %>" placeholder="동"></div>
-<div class="col-md-3 col-md-5"><label for="hosu">호수</label><input type="text" size="10" class="form-control"  name="hosu" id="hosu" value="<%=ldto.getHosu() %>" placeholder="호수" style="ime-mode:disabled"></div>
+<div class="col-md-3 col-md-5"><label for="hosu">호수</label><input type="text" size="10" class="form-control"  name="hosu" id="hosu" value="<%if(ldto.getHosu()!=0){ %><%=ldto.getHosu() %><%} %>" placeholder="호수" style="ime-mode:disabled"></div>
 </div>
 	</div>
 <div class="row">
 <div class="form-group">
 <div class="col-md-5 col-md-7">
 <label for="phone">연락처</label>
-	<input type="tel" class="form-control" name="phone" id="phone" value="<%=ldto.getPhone() %>" placeholder="연락처">
+	<input type="tel" class="form-control" name="phone" id="phone" maxlength="11" value="<%=ldto.getPhone() %>" placeholder="연락처">
+	
+	
 	</div>
 	</div>
 </div>

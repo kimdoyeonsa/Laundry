@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <jsp:include page="/head.php"></jsp:include>
 <script>
+
 function formSubmit(sel){
 	  var params = $(sel).serialize(); 
 	  if($("#name").val()==""||$("#phone").val()==""||$("#amount").val()==""||$("#work").val()==""||$("#pay").val()==""||$("#output").val()==""){
@@ -44,24 +45,34 @@ location.reload();
 }
 return false;
 }
+$("#hosu").keypress(function(event){
+if(event.which&&(event.which<=47||event.which>=58)&&event.which!=8){
+	event.preventDefault();
+}	
+});
+$("#phone").keypress(function(event){
+	if(event.which&&(event.which<=47||event.which>=58)&&event.which!=8){
+		event.preventDefault();
+	}	
+	});
 </script>
 <div id="container" class="container">
 <h2 class="text-center">등록화면</h2>
 
-<form class="form-horizontal" method="post" name="form" id="form" action="<%=request.getContextPath()%>/insert/proc.php" onsubmit="return formSubmit(this)">
+<form class="form-horizontal" method="post" name="form" id="form" action="<%=request.getContextPath()%>/insert/proc.php"b autocomplete="off" onsubmit="return formSubmit(this)">
 
 <div class="row">
 <div class="form-group">
 <div class="col-md-3 col-md-5"><label for="name">이름</label><input type="text" size="10" class="form-control" name="name" id="name" placeholder="이름"></div>
 <div class="col-md-3 col-md-5"><label for="dong">동</label><input type="text" size="10" class="form-control" name="dong" id="dong" placeholder="동"></div>
-<div class="col-md-3 col-md-5"><label for="hosu">호수</label><input type="text" size="10" class="form-control"  name="hosu" id="hosu" placeholder="호수"></div>
+<div class="col-md-3 col-md-5"><label for="hosu">호수</label><input type="text" size="10" class="form-control"  name="hosu" id="hosu" placeholder="호수" ></div>
 </div>
 	</div>
 <div class="row">
 <div class="form-group">
 <div class="col-md-5 col-md-7">
 <label for="phone">연락처</label>
-	<input type="tel" class="form-control" name="phone" id="phone" placeholder="연락처">
+	<input type="tel" class="form-control" name="phone" id="phone" maxlength="11" placeholder="연락처" >
 	</div>
 	</div>
 </div>

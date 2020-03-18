@@ -148,7 +148,7 @@ public class WebController {
 		dong=req.getParameter("dong");
 		ldto.setDong(dong);
 		int hosu=0;
-		if (req.getParameter("hosu") != null) {
+		if (req.getParameter("hosu") == null) {
 		hosu = Integer.parseInt(req.getParameter("hosu"));
 		}
 		ldto.setHosu(hosu);
