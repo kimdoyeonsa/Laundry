@@ -51,7 +51,7 @@ if(event.which&&(event.which<=47||event.which>=58)&&event.which!=8){
 }	
 });
 $("#phone").keypress(function(event){
-	if(event.which&&(event.which<=47||event.which>=58)&&event.which!=8){
+	if(event.which&&(event.which<=47||event.which>=58)&&event.which!=8&&event.which!=45){
 		event.preventDefault();
 	}	
 	});
@@ -72,7 +72,7 @@ $("#phone").keypress(function(event){
 <div class="form-group">
 <div class="col-md-5 col-md-7">
 <label for="phone">연락처</label>
-	<input type="tel" class="form-control" name="phone" id="phone" maxlength="11" placeholder="연락처" >
+	<input type="tel" class="form-control" name="phone" id="phone" maxlength="13" placeholder="연락처" >
 	</div>
 	</div>
 </div>
