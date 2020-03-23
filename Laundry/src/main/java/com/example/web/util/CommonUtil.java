@@ -166,4 +166,64 @@ public class CommonUtil {
 		return i;
 		
 	}
+	public static long time() throws ParseException {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.KOREA);
+		Date date=new Date();
+		String dt=format.format(date);
+		date=format.parse(dt);
+		
+		//long time=Math.round(System.currentTimeMillis()/1000);
+
+		return date.getTime()/1000;
+	}
+	
+	 public static long strtotime(String text) throws ParseException {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.KOREA);
+		Date date=format.parse(text);
+		return date.getTime()/1000; 
+		
+	}
+	 public static String datetype(String text) {
+			int time=Integer.parseInt(text.substring(11,13));
+			String timeType="오전";
+			if(time>=12) {
+				timeType="오후";
+				time-=12;
+			}
+			return text.substring(0,11)+" "+timeType+" "+time+":"+text.substring(14,16);
+		}
+	 public static String dist_dt(String text) throws ParseException {
+		String res="";
+		long diff=time()-strtotime(text);
+		int s=60;
+		int h=s*60;
+		int d=h*24;
+		int m=d*7;
+		int y=m*52+(1*24*60*60);
+		if(diff<s) {
+			res=diff+"초 전";
+		}
+		else if(h>diff&&diff>=s) {
+			res=Math.round(diff/s)+"분 전";
+		}
+		else if(d>diff&&diff>=h) {
+			res=Math.round(diff/h)+"시간 전";
+		}
+		else if(m>diff&&diff>=d) {
+			res=Math.round(diff/d)+"일 전";
+		}
+		else if(y>diff&&diff>=m) {
+			res=Math.round(diff/m)+"주 전";
+		}
+		else {
+			res=Math.round(diff/y)+"년 전";
+		}
+		/*
+		else{
+			res=Math.round(diff/y)+"년 전";
+		}
+		*/
+		return res;
+	}
+	
 }

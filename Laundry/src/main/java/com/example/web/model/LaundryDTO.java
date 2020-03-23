@@ -1,6 +1,7 @@
 package com.example.web.model;
 
-import java.sql.Date;
+
+import java.sql.Timestamp;
 
 public class LaundryDTO{
 private int id;
@@ -12,13 +13,13 @@ private String work;
 private String pay;
 private String msg;
 private String output;
-private Date date;
+private Timestamp date;
 private String amount;
 public LaundryDTO() {
 	// TODO Auto-generated constructor stub
 }
 
-public LaundryDTO(int id, String dong, int hosu, String name, String phone, String work, String pay, String output, Date date,String msg, String amount) {
+public LaundryDTO(int id, String dong, int hosu, String name, String phone, String work, String pay, String output, Timestamp date,String msg, String amount) {
     this.id = id;
     this.dong = dong;
     this.hosu = hosu;
@@ -95,10 +96,10 @@ public String getOutput() {
 public void setOutput(String output) {
 	this.output = output;
 }
-public Date getDate() {
+public Timestamp getDate() {
 	return date;
 }
-public void setDate(Date date) {
+public void setDate(Timestamp date) {
 	this.date = date;
 }
 public String getAmount() {

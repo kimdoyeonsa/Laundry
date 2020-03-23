@@ -1,9 +1,9 @@
 package com.example.web.DAO;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -45,7 +45,7 @@ public class LaundryDAO {
 		pstmt=conn.prepareStatement(sql.toString());
 		pstmt.execute();
 		sql = new StringBuilder();
-		sql.append("create table if not exists Laundry."+table+"(id int(255) not null AUTO_INCREMENT,dong varchar(10),hosu int(10) not null default 0,name varchar(20),phone varchar(15),work varchar(100),amount varchar(10),pay enum('선불','후불'),output enum('입고','출고'),date date default curdate(),primary key(id));");
+		sql.append("create table if not exists Laundry."+table+"(id int(255) not null AUTO_INCREMENT,dong varchar(10),hosu int(10) not null default 0,name varchar(20),phone varchar(15),work varchar(100),amount varchar(10),pay enum('선불','후불'),output enum('입고','출고'),date datetime default now(),primary key(id));");
 		pstmt=conn.prepareStatement(sql.toString());
 		pstmt.execute();
 	}catch(Exception e) {
@@ -102,10 +102,12 @@ public ArrayList<LaundryDTO> list(String table,String keyField,String search){
 				String work=rset.getString("work");
 				String pay=rset.getString("pay");
 			    String output=rset.getString("output");
-			    Date date=rset.getDate("date");
+			    Timestamp date=rset.getTimestamp("date");
+			   String regdate=sdf.format(date);
+			   java.util.Date reg_date=sdf.parse(regdate);
 			    String amount=rset.getString("amount");
 			    String msg="";
-			    cal.setTime(date);
+			    cal.setTime(reg_date);
 			    cal.add(cal.DATE, +7);
 			    if(dbconn.check(currdate, cal.getTime())==1) {
 			    msg="<font color=\"#ff0000\">√</font>";
@@ -182,7 +184,7 @@ public ArrayList<LaundryDTO> read(String table,int idx){
 				String work=rset.getString("work");
 				String pay=rset.getString("pay");
 			    String output=rset.getString("output");
-			    Date date=rset.getDate("date");
+			    Timestamp date=rset.getTimestamp("date");
 			    String amount=rset.getString("amount");
 			   if(id==idx){	
 			    LaundryDTO ldto=new LaundryDTO(id, dong, hosu, name, phone, work, pay, output, date,"", amount);
