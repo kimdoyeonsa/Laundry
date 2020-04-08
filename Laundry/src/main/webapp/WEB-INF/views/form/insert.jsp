@@ -82,7 +82,7 @@ $("#phone").keypress(function(event){
 <label for="amount">수량</label>
 <select class="form-control" id="amount" name="amount" >
 
-<option>수량</option>
+<option value="0">수량</option>
 <%for(int i=1;i<100;i++){ %>
 <option value="<%=i%>"><%=i%>개</option>
 <%}%>
