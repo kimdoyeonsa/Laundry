@@ -58,7 +58,7 @@ public class WebController {
 				+ "}");
 		out.println("</script>");
 		out.println("<center>");
-		out.println("<button class=\"btn btn-default\" width=\"80%\" onclick=\"javascript:list()\">ºº≈π∏Ò∑œ</button>");
+		out.println("<button class=\"btn btn-default\" width=\"80%\" onclick=\"javascript:list()\">ÏÑ∏ÌÉÅÎ™©Î°ù</button>");
 		out.println("</center>");
 	}
 	@RequestMapping("create.php")
@@ -109,33 +109,35 @@ public class WebController {
 	public void insertproc(HttpServletRequest req,HttpServletResponse res) throws NumberFormatException,Exception {
 		LaundryDTO ldto=new LaundryDTO();
 		PrintWriter out=res.getWriter();
-		ldto.setId(vdao.select_int_nextval("Laundry", "Laundry", "id"));
+		int id=vdao.select_int_nextval("Laundry", "Laundry", "id");
+		//ldto.setId(vdao.select_int_nextval("Laundry", "Laundry", "id"));
 		String dong="";
 		dong=req.getParameter("dong");
-		ldto.setDong(dong);
+		//ldto.setDong(dong);
 		int hosu=0;
 		if (req.getParameter("hosu") == null) {
 		hosu = Integer.parseInt(req.getParameter("hosu"));
 		}
-		ldto.setHosu(hosu);
+		//ldto.setHosu(hosu);
 		String name="";
 		name=req.getParameter("name");
-		ldto.setName(name);
+		//ldto.setName(name);
 		String amount="";
 		amount=req.getParameter("amount");
-		ldto.setAmount(amount);
+		//ldto.setAmount(amount);
 		String pay="";
 		pay=req.getParameter("pay");
-		ldto.setPay(pay);
+		//ldto.setPay(pay);
 		String work="";
 		work=req.getParameter("work");
-		ldto.setWork(work);
+		//ldto.setWork(work);
 		String phone="";
 		phone=req.getParameter("phone");
-		ldto.setPhone(phone);
+		//ldto.setPhone(phone);
 		String output="";
 		output=req.getParameter("output");
-		ldto.setOutput(output);
+		//ldto.setOutput(output);
+		ldto=new LaundryDTO(id, dong, hosu, name, phone, work, pay, output, amount);
 		int flag=ldao.insert("Laundry", ldto);
 		out.println("{\"result\":\""+flag+"\"}");
 		
@@ -146,31 +148,32 @@ public class WebController {
 		PrintWriter out=res.getWriter();
 		String dong="";
 		dong=req.getParameter("dong");
-		ldto.setDong(dong);
+		//ldto.setDong(dong);
 		int hosu=0;
 		if (req.getParameter("hosu") == null) {
 		hosu = Integer.parseInt(req.getParameter("hosu"));
 		}
-		ldto.setHosu(hosu);
+		//ldto.setHosu(hosu);
 		String name="";
 		name=req.getParameter("name");
-		ldto.setName(name);
+		//ldto.setName(name);
 		String amount="";
 		amount=req.getParameter("amount");
-		ldto.setAmount(amount);
+		//ldto.setAmount(amount);
 		String pay="";
 		pay=req.getParameter("pay");
-		ldto.setPay(pay);
+		//ldto.setPay(pay);
 		String work="";
 		work=req.getParameter("work");
-		ldto.setWork(work);
+		//ldto.setWork(work);
 		String phone="";
 		phone=req.getParameter("phone");
-		ldto.setPhone(phone);
+		//ldto.setPhone(phone);
 		String output="";
 		output=req.getParameter("output");
-		ldto.setOutput(output);
-		ldto.setId(Integer.parseInt(req.getParameter("id")));
+		//ldto.setOutput(output);
+		int id=Integer.parseInt(req.getParameter("id"));
+		ldto=new LaundryDTO(id, dong, hosu, name, phone, work, pay, output, amount);
 		int flag=ldao.update("Laundry", ldto);
 		out.println("{\"result\":\""+flag+"\"}");
 	}
