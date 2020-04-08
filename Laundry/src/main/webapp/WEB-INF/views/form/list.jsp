@@ -33,6 +33,7 @@ $("#form").keydown(function (event)
 
 function edit(idx){
 	var data="idx="+idx;
+	$("#container").load("<%=request.getContextPath()%>/Form/update.php",data);
 }
 </script>
     <div id="container" class="container">
