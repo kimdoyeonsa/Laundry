@@ -114,10 +114,8 @@ public class WebController {
 		String dong="";
 		dong=req.getParameter("dong");
 		//ldto.setDong(dong);
-		int hosu=0;
-		if (req.getParameter("hosu") == null) {
-		hosu = Integer.parseInt(req.getParameter("hosu"));
-		}
+		String hosu="";
+		hosu=req.getParameter("hosu");
 		//ldto.setHosu(hosu);
 		String name="";
 		name=req.getParameter("name");
@@ -149,10 +147,8 @@ public class WebController {
 		String dong="";
 		dong=req.getParameter("dong");
 		//ldto.setDong(dong);
-		int hosu=0;
-		if (req.getParameter("hosu") == null) {
-		hosu = Integer.parseInt(req.getParameter("hosu"));
-		}
+		String hosu="";
+		hosu=req.getParameter("hosu");
 		//ldto.setHosu(hosu);
 		String name="";
 		name=req.getParameter("name");

@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 public class LaundryDTO{
 private int id;
 private String dong;
-private int hosu;
+private String hosu;
 private String name;
 private String phone;
 private String work;
@@ -19,7 +19,7 @@ public LaundryDTO() {
 	// TODO Auto-generated constructor stub
 }
 
-public LaundryDTO(int id, String dong, int hosu, String name, String phone, String work, String pay, String output, Timestamp date,String msg, String amount) {
+public LaundryDTO(int id, String dong, String hosu, String name, String phone, String work, String pay, String output, Timestamp date,String msg, String amount) {
     this.id = id;
     this.dong = dong;
     this.hosu = hosu;
@@ -34,7 +34,7 @@ public LaundryDTO(int id, String dong, int hosu, String name, String phone, Stri
 }
 
 
-public LaundryDTO(int id, String dong, int hosu, String name, String phone, String work, String pay, String output, String amount) {
+public LaundryDTO(int id, String dong, String hosu, String name, String phone, String work, String pay, String output, String amount) {
     this.id = id;
     this.dong = dong;
     this.hosu = hosu;
@@ -68,10 +68,10 @@ public String getDong() {
 public void setDong(String dong) {
 	this.dong = dong;
 }
-public int getHosu() {
+public String getHosu() {
 	return hosu;
 }
-public void setHosu(int hosu) {
+public void setHosu(String hosu) {
 	this.hosu = hosu;
 }
 

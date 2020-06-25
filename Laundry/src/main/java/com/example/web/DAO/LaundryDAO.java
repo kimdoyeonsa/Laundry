@@ -45,7 +45,7 @@ public class LaundryDAO {
 		pstmt=conn.prepareStatement(sql.toString());
 		pstmt.execute();
 		sql = new StringBuilder();
-		sql.append("create table if not exists Laundry."+table+"(id int(255) not null AUTO_INCREMENT,dong varchar(10),hosu int(10) not null default 0,name varchar(20),phone varchar(15),work varchar(100),amount varchar(10),pay enum('¼±ºÒ','ÈÄºÒ'),output enum('ÀÔ°í','Ãâ°í'),date datetime default now(),primary key(id));");
+		sql.append("create table if not exists Laundry."+table+"(id int(255) not null AUTO_INCREMENT,dong varchar(10),hosu varchar(10) not null default 0,name varchar(20),phone varchar(15),work varchar(100),amount varchar(10),pay enum('ì„ ë¶ˆ','í›„ë¶ˆ'),output enum('ìž…ê³ ','ì¶œê³ '),date datetime default now(),primary key(id));");
 		pstmt=conn.prepareStatement(sql.toString());
 		pstmt.execute();
 	}catch(Exception e) {
@@ -96,7 +96,7 @@ public ArrayList<LaundryDTO> list(String table,String keyField,String search){
 				
 				int id=rset.getInt("id");
 				String dong=rset.getString("dong");
-				int hosu=rset.getInt("hosu");
+				String hosu=rset.getString("hosu");
 				String name=rset.getString("name");
 				String phone=rset.getString("phone");
 				String work=rset.getString("work");
@@ -110,7 +110,7 @@ public ArrayList<LaundryDTO> list(String table,String keyField,String search){
 			    cal.setTime(reg_date);
 			    cal.add(cal.DATE, +7);
 			    if(dbconn.check(currdate, cal.getTime())==1) {
-			    msg="<font color=\"#ff0000\">¡î</font>";
+			    	 msg="<font color=\"#ff0000\">âˆš</font>";
 			    }
 		
 			    		if(rset.getString(keyField).contains(search)) {
@@ -178,7 +178,7 @@ public ArrayList<LaundryDTO> read(String table,int idx){
 				*/
 				int id=rset.getInt("id");
 				String dong=rset.getString("dong");
-				int hosu=rset.getInt("hosu");
+				String hosu=rset.getString("hosu");
 				String name=rset.getString("name");
 				String phone=rset.getString("phone");
 				String work=rset.getString("work");
@@ -216,7 +216,7 @@ public int insert(String table,LaundryDTO ldto) {
 		
 		pstmt.setInt(1, ldto.getId());
 		pstmt.setString(2, dbconn.setUTFchar(ldto.getDong()));
-		pstmt.setInt(3, ldto.getHosu());
+		pstmt.setString(3, ldto.getHosu());
 		pstmt.setString(4, dbconn.setUTFchar(ldto.getName()));
 		pstmt.setString(5, dbconn.setUTFchar(ldto.getPhone()));
 		pstmt.setString(6, dbconn.setUTFchar(ldto.getWork()));
@@ -249,7 +249,7 @@ public int update(String table,LaundryDTO ldto) {
 		sql.append("update Laundry."+table+" set dong=?,hosu=?,name=?,phone=?,work=?,pay=?,output=?,amount=? where id=?;");
 		pstmt = conn.prepareStatement(sql.toString());
 		pstmt.setString(1, dbconn.setUTFchar(ldto.getDong()));
-		pstmt.setInt(2, ldto.getHosu());
+		pstmt.setString(2, ldto.getHosu());
 		pstmt.setString(3, dbconn.setUTFchar(ldto.getName()));
 		pstmt.setString(4, dbconn.setUTFchar(ldto.getPhone()));
 		pstmt.setString(5, dbconn.setUTFchar(ldto.getWork()));
