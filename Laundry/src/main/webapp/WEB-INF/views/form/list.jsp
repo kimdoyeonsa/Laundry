@@ -75,7 +75,7 @@ for(LaundryDTO ldto:items){
 		<div class="card" style="width:60rem">
   <div class="card-body">
 		
-		<div class="card-text"><h3><a href="javascript:edit('<%=ldto.getId() %>')"><%if(!ldto.getDong().equals("")){%><%=ldto.getDong()+"동" %>&nbsp;&nbsp;&nbsp;<%}%><%if(ldto.getHosu()!=0){%><%=ldto.getHosu()+"호" %>&nbsp;&nbsp;&nbsp;<%}%><%=ldto.getName() %>&nbsp;&nbsp;&nbsp;<%=ldto.getPhone() %>&nbsp;&nbsp;&nbsp;<%=ldto.getAmount()+" 개" %>&nbsp;&nbsp;&nbsp;<%=ldto.getWork() %>&nbsp;&nbsp;&nbsp;<%=sdf.format(ldto.getDate()) %>&nbsp;&nbsp;&nbsp;<%=ldto.getOutput() %>&nbsp;&nbsp;&nbsp;<%=ldto.getPay() %>&nbsp;&nbsp;&nbsp;<%=ldto.getMsg() %></a></h3></div>
+		<div class="card-text"><h3><a href="javascript:edit('<%=ldto.getId() %>')"><%if(!ldto.getDong().equals("")){%><%=ldto.getDong()+"동" %>&nbsp;&nbsp;&nbsp;<%}%><%if(ldto.getHosu()!=""){%><%=ldto.getHosu()+"호" %>&nbsp;&nbsp;&nbsp;<%}%><%=ldto.getName() %>&nbsp;&nbsp;&nbsp;<%=ldto.getPhone() %>&nbsp;&nbsp;&nbsp;<%=ldto.getAmount()+" 개" %>&nbsp;&nbsp;&nbsp;<%=ldto.getWork() %>&nbsp;&nbsp;&nbsp;<%=sdf.format(ldto.getDate()) %>&nbsp;&nbsp;&nbsp;<%=ldto.getOutput() %>&nbsp;&nbsp;&nbsp;<%=ldto.getPay() %>&nbsp;&nbsp;&nbsp;<%=ldto.getMsg() %></a></h3></div>
 
 </div>
 </div>
