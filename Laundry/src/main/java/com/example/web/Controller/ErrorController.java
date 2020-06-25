@@ -19,19 +19,19 @@ public String error(Model model,@PathVariable String errno,HttpServletResponse r
 		String msg="";
 		res.setStatus(200);
 		if(errno.equals("401")) {
-			msg=errno+" ¿¡·¯ ÀÔ´Ï´Ù.";
+			msg=errno+" ì—ëŸ¬ ì…ë‹ˆë‹¤.";
 		}
 		else if(errno.equals("403")) {
-			msg=errno+" ¿¡·¯ ÀÔ´Ï´Ù.";
+			msg=errno+" ì—ëŸ¬ ì…ë‹ˆë‹¤.";
 		}
 		else if(errno.equals("404")) {
-			msg=errno+" ¿¡·¯ ÀÔ´Ï´Ù."+"\n"+"¿äÃ»ÇÏ½Å ÆäÀÌÁö°¡ Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù."+"\n"+"\"page not found\"";
+			msg=errno+" ì—ëŸ¬ ì…ë‹ˆë‹¤."+"\n"+"ìš”ì²­í•˜ì‹  í˜ì´ì§€ê°€ ì¡´ì¬ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤."+"\n"+"\"page not found\"";
 		}
 		else if(errno.equals("500")) {
-			msg=errno+" ¿¡·¯ ÀÔ´Ï´Ù.";
+			msg=errno+" ì—ëŸ¬ ì…ë‹ˆë‹¤.";
 		}
 		else {
-	     msg="java.lang.Throwable ¿¡·¯ ÀÔ´Ï´Ù.";
+	     msg="java.lang.Throwable ì—ëŸ¬ ì…ë‹ˆë‹¤.";
 		}
 	model.addAttribute("msg", msg);
 	return "error/error";

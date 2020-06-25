@@ -185,9 +185,9 @@ public class CommonUtil {
 	}
 	 public static String datetype(String text) {
 			int time=Integer.parseInt(text.substring(11,13));
-			String timeType="¿ÀÀü";
+			String timeType="ì˜¤ì „";
 			if(time>=12) {
-				timeType="¿ÀÈÄ";
+				timeType="ì˜¤í›„";
 				time-=12;
 			}
 			return text.substring(0,11)+" "+timeType+" "+time+":"+text.substring(14,16);
@@ -201,26 +201,26 @@ public class CommonUtil {
 		int m=d*7;
 		int y=m*52+(1*24*60*60);
 		if(diff<s) {
-			res=diff+"ÃÊ Àü";
+			res=diff+"ì´ˆ ì „";
 		}
 		else if(h>diff&&diff>=s) {
-			res=Math.round(diff/s)+"ºĞ Àü";
+			res=Math.round(diff/s)+"ë¶„ ì „";
 		}
 		else if(d>diff&&diff>=h) {
-			res=Math.round(diff/h)+"½Ã°£ Àü";
+			res=Math.round(diff/h)+"ì‹œê°„ ì „";
 		}
 		else if(m>diff&&diff>=d) {
-			res=Math.round(diff/d)+"ÀÏ Àü";
+			res=Math.round(diff/d)+"ì¼ ì „";
 		}
 		else if(y>diff&&diff>=m) {
-			res=Math.round(diff/m)+"ÁÖ Àü";
+			res=Math.round(diff/m)+"ì£¼ ì „";
 		}
 		else {
-			res=Math.round(diff/y)+"³â Àü";
+			res=Math.round(diff/y)+"ë…„ ì „";
 		}
 		/*
 		else{
-			res=Math.round(diff/y)+"³â Àü";
+			res=Math.round(diff/y)+"ë…„ ì „";
 		}
 		*/
 		return res;
