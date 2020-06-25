@@ -34,6 +34,17 @@ public LaundryDTO(int id, String dong, int hosu, String name, String phone, Stri
 }
 
 
+public LaundryDTO(int id, String dong, int hosu, String name, String phone, String work, String pay, String output, String amount) {
+    this.id = id;
+    this.dong = dong;
+    this.hosu = hosu;
+    this.name = name;
+    this.phone = phone;
+    this.work = work;
+    this.pay = pay;
+    this.output = output;
+    this.amount = amount;
+}
 
 
 public int getId() {

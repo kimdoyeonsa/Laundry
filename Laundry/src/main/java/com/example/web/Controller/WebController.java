@@ -173,7 +173,7 @@ public class WebController {
 		output=req.getParameter("output");
 		//ldto.setOutput(output);
 		int id=Integer.parseInt(req.getParameter("id"));
-		ldto=new LaundryDTO(id, dong, hosu, name, phone, work, pay, output, amount);
+		ldto=new LaundryDTO(id, dong, hosu, name, phone, work, pay, output,  amount);
 		int flag=ldao.update("Laundry", ldto);
 		out.println("{\"result\":\""+flag+"\"}");
 	}
