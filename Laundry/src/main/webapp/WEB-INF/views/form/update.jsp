@@ -88,7 +88,7 @@ $("#phone").keypress(function(event){
 <div class="form-group">
 <div class="col-md-3 col-md-5"><label for="name">이름</label><input type="text" size="10" class="form-control" name="name" id="name" value="<%=ldto.getName() %>" placeholder="이름"></div>
 <div class="col-md-3 col-md-5"><label for="dong">동</label><input type="text" size="10" class="form-control" name="dong" id="dong" value="<%=ldto.getDong() %>" placeholder="동"></div>
-<div class="col-md-3 col-md-5"><label for="hosu">호수</label><input type="text" size="10" class="form-control"  name="hosu" id="hosu" value="<%=ldto.getHosu() %>" placeholder="호수" style="ime-mode:disabled"></div>
+<div class="col-md-3 col-md-5"><label for="hosu">호수</label><input type="text" size="10" class="form-control"  name="hosu" id="hosu" value="<%if(!ldto.getHosu().equals("")){ %><%=ldto.getHosu() %><%} %>" placeholder="호수" style="ime-mode:disabled"></div>
 </div>
 	</div>
 <div class="row">
